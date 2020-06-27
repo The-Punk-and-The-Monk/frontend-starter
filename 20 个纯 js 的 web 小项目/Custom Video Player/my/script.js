@@ -36,3 +36,18 @@ progress.onchange = (e)=>{
   player.currentTime = parseFloat(progress.value) / 100 * player.duration
 }
 
+function logEventType(e){
+  console.log(e.type)
+}
+
+// // input[type=range] 触发的事件顺序测试
+// progress.oninput = logEventType
+// progress.onchange = logEventType
+// progress.onmousedown = logEventType 
+// progress.onmouseup = logEventType
+// // range[type=range] 被点击后会处于 focus 状态
+// progress.onkeydown = logEventType
+// progress.onkeyup = logEventType
+
+
+
