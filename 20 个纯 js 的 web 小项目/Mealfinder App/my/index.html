@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mealfinder App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://use.fontawesome.com/1be0e97bac.js"></script>
+</head>
+<body>
+  <div class='main'>
+    <h1>Meal Finder</h1>
+    <div class='search-area'>
+      <input type="text" class='search-input' placeholder="Search for meals or keywords">
+      <button type="button" class='search-button'>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+      <button type='button' class='random-button'>
+        <i class="fa fa-random" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div class='search-results-container hidden'>
+      <h3></h3>
+      <div class='search-results-pics-container'>
+      </div>
+    </div>
+
+    <div class='meal-details-container hidden'>
+      <h1 class='meal-name'></h1>
+      <img class='meal-pic' src='' alt=''>
+      <div class='meal-area'>
+      </div>
+      <p class='meal-recipe'></p>
+      <h2>Ingredients</h2>
+      <ul class='ingredients-ul'>
+      </ul>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
