@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://use.fontawesome.com/1be0e97bac.js"></script>
+</head>
+<body>
+  <h1>Music Player</h1>
+  <div class="player">
+    <audio>
+      <source src="../origin/music/hey.mp3" type="audio/mp3">
+    </audio>
+    <div class='player-bar'>
+      <div class='cover'>
+        <img src="media/image/the punk and the monk.jpg" alt="cover">
+      </div>
+
+      <div class='controls'>
+        <button type="button" id='previous-song'>
+          <i class="fa fa-backward" aria-hidden="true"></i>
+        </button>
+        <button type="button" id='play-toggle'>
+          <i class="fa fa-play" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="next-song">
+          <i class="fa fa-forward" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class='music-info'>
+      <p class='music-name'></p>
+      <input class='progress' type='range' min='0' max='100' value='0' step='0.1'>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

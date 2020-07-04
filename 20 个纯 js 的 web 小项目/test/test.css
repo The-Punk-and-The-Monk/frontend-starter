@@ -1,0 +1,31 @@
+/* * {
+  box-sizing: border-box;
+} */
+
+.container {
+  position:relative;
+}
+
+.container div {
+  width:100px;
+  height: 100px;
+}
+
+.div1 {
+  /* position: relative; */
+  /* z-index: 99; */
+  margin:100px;
+  background-color: red;
+}
+
+.div2 {
+  position: absolute;
+  z-index: 1;
+  top:0;
+  left:0;
+  background-color: blue;
+}
+
+.div3{
+  background-color: green;
+}
