@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-flow:column wrap;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  box-sizing: content-box;
+  width: 200px;
+  height: 40px;
+  margin-bottom: 1px;
+  border:1px solid rgba(200,200,200,0.8);
+  line-height:40px;
+  display:flex;
+  flex-direction: row;
+}
+
+.order {
+  flex:1;
+  height:100%;
+  text-align: center;
+  background-color: rgba(200,200,200,0.8);
+}
+
+.name {
+  flex:4;
+  padding-left: 10px;
+  border:1px solid rgba(200,200,200,0.8);
+  transition:background-color 1s ease;
+}
+
+.name.drag-over {
+  background-color:rgba(200,200,200,0.8);
+}
