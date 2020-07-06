@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+    .hour {
+      color: red;
+    }
+
+    .min {
+      color:green;
+    }
+
+    .sec {
+      color: blue
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- click on this button calls clockStart() -->
+  <input type="button" onclick="clockStart()" value="Start">
+
+  <!-- click on this button calls clockStop() -->
+  <input type="button" onclick="clockStop()" value="Stop">
+
+  <script>
+    let date = new Date()
+    let clock = document.createElement('div')
+    let hour = document.createElement('span')
+    let min = document.createElement('span')
+    let sec = document.createElement('span')
+    hour.className = 'hour'
+    min.className = 'min'
+    sec.className = 'sec'
+    clock.append(hour, ':', min, ':', sec)
+    document.body.prepend(clock)
+
+    function flashClock(){
+      hour.innerText = date.getHours()
+      min.innerText = date.getMinutes()
+      sec.innerText = date.getSeconds()
+    }
+
+    function increaseSeconds(n){
+      date.setSeconds(date.getSeconds() + n)
+      flashClock()
+    }
+
+    let intervalId;
+    function clockStart(){
+      if(!intervalId){
+        intervalId = setInterval(increaseSeconds, 1000, 1)
+      }
+    }
+
+    function clockStop(){
+      if(intervalId){
+        clearInterval(intervalId)
+        intervalId = null
+      }
+    }
+
+    flashClock()
+  </script>
+</body>
+
+</html>

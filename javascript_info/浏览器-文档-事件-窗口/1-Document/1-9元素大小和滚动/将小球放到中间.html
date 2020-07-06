@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #field {
+      width: 200px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      position: relative;
+    }
+
+    #ball {
+      position: absolute;
+      width:40px;
+      height: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+      let field = document.getElementById('field')
+      let ball = document.getElementById('ball')
+      console.log(field.clientWidth, field.clientHeight)
+      console.log(ball.offsetWidth, ball.offsetWidth)
+      ball.style.top = parseInt((field.clientHeight - ball.offsetHeight)/2) + 'px'
+      ball.style.left = parseInt((field.clientWidth - ball.offsetWidth)/2) + 'px'
+  </script>
+
+
+</body>
+
+</html>

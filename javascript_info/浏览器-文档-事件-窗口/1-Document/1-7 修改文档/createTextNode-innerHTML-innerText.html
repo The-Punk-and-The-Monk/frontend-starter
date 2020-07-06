@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="elem1"></div>
+    <div id="elem2"></div>
+    <div id="elem3"></div>
+    <div id="elem4"></div>
+    <div id="elem5"></div>
+    <div id="elem6"></div>
+    <div id="elem7"></div>
+
+    <script>
+        let text = '<p>test</p>'
+        elem1.append(document.createTextNode(text))
+        elem2.innerHTML = text 
+        elem3.innerText = text
+        elem4.append(text)
+        elem5.textContent = text
+        elem6.insertAdjacentHTML('afterbegin', text)
+        
+    </script>
+</body>
+</html>

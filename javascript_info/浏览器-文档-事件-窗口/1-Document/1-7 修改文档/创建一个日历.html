@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #E6E6E6;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="calendar"></div>
+
+  <script>
+    function createCalendar(elem, year, month) {
+      // ...your code that generates the calndar in elem...
+      let table = document.createElement('table')
+      let thead = document.createElement('thead')
+      let tbody = document.createElement('tbody')
+      table.append(thead, tbody)
+      calendar.append(table)
+
+      let days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU']
+      let daysRow = document.createElement('tr')
+      for(let day of days){
+          let dayTh = document.createElement('th')
+          dayTh.innerText = day 
+          daysRow.append(dayTh)
+      }
+      thead.append(daysRow)
+
+      let date = new Date(Date.UTC(year, month-1, 1))
+      let row;
+      while(date.getMonth() !== month){
+          if(!row){
+              row = document.createElement('tr')
+              for(let i = 0; i < 7; i++){
+                  row.append(document.createElement('td'))
+              }
+              tbody.append(row)
+          }
+          let curDate = date.getDate()
+          let curDay = date.getDay()
+          row.cells[curDay].innerText = curDate 
+
+          if(curDay === 6){
+              row = null
+          }
+          date.setDate(curDate + 1)
+      }
+    }
+
+    createCalendar(calendar, 2012, 11);
+  </script>
+
+</body>
+</html>

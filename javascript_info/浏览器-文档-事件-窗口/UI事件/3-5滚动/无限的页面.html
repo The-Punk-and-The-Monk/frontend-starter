@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<h1>Scroll me</h1>
+
+<script>
+  let body = document.body 
+  function addMore(){
+    while(true){
+    let htmlBottom = document.documentElement.getBoundingClientRect().bottom;
+    let htmlClientHeight = document.documentElement.clientHeight;
+    if(htmlBottom > htmlClientHeight + 50) break;
+    body.insertAdjacentHTML("beforeend",`<p>Date: ${new Date()}</p>`)
+    }
+  }
+  body.addEventListener('scroll', addMore)
+  addMore()
+</script>
+
+</body>
+</html>

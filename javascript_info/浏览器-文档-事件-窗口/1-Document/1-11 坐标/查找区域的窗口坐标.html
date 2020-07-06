@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <script>
+    document.onclick = function(e) { // shows click coordinates
+      coords.innerHTML = e.clientX + ':' + e.clientY;
+    };
+  </script>
+</head>
+
+<body>
+
+  点击任意位置来获取窗口坐标。
+  <br> 这仅用于测试，用来检查你通过 JavaScript 获得的结果。
+  <br>
+  <div id="coords">(点击坐标显示在这里)</div>
+
+
+  <div id="field">
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+
+  <div class="triangle-right" style="left:-20px;top:-176px">1</div>
+  <div class="triangle-right" style="left:-10px;top:-178px">3</div>
+  <div class="triangle-right" style="left:190px;top:-40px">4</div>
+  <div class="triangle-right" style="left:200px;top:-42px">2</div>
+
+  <script src="获取滚动条宽度.js"></script>
+  <script>
+    let scrollWidth = getScrollWidth()
+    let field = document.getElementById('field')
+    let rect = field.getBoundingClientRect()
+    console.log('1: ', rect.left, rect.top)
+    console.log('2: ', rect.right, rect.bottom)
+    console.log('3: ', rect.left + field.clientLeft, rect.top + field.clientTop)
+    console.log('4: ', rect.left + field.clientLeft + field.clientWidth + scrollWidth, rect.top + field.clientTop + field.clientHeight + scrollWidth)
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<table id="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>John</td>
+      <td>Smith</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Pete</td>
+      <td>Brown</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>Ann</td>
+      <td>Lee</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  // my 
+  // let table = document.getElementById('table')
+  // let tbody = table.getElementsByTagName('tbody')[0]
+  // let rows = Array.from(tbody.rows)
+  // rows.sort((row1, row2) => {
+  //   return row1.cells[0].innerText > row2.cells[0].innerText ? 1 : -1
+  // })
+  // tbody.append(...rows)
+
+  // ans 
+  let sortedRows = Array.from(table.tBodies[0].rows)
+    .sort((rowA, rowB) => rowA.cells[0].innerText.localeCompare(rowB.cells[0].innerText))
+  table.tBodies[0].append(...sortedRows)
+</script>

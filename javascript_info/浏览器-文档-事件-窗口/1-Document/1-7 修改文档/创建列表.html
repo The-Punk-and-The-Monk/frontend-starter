@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Create a List!</h2>
+    <ol id='ol'>
+
+    </ol>
+
+    <script>
+        while(true){
+            let text = prompt("enter a li")
+            if(text){
+                let newLi = document.createElement('li')
+                newLi.innerText = text 
+                ol.append(newLi)
+            }else{
+                break;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="prompt-form-container">
+    <form id="prompt-form">
+      <div id="prompt-message">Enter something...
+        <br>Please..</div>
+      <input name="text" type="text">
+      <input type="submit" value="Ok">
+      <input type="button" name="cancel" value="Cancel">
+    </form>
+  </div>
+
+  <script>
+    let container = document.getElementById('prompt-form-container')
+
+    let showModalButton = document.createElement('input')
+    showModalButton.type="button"
+    showModalButton.value = 'click'
+    showModalButton.onclick= ()=>{
+      showPrompt("Enter something<br>...smart :)", function(value){
+        alert('You entered: ' + value);
+      })
+    }
+    document.body.append(showModalButton)
+
+    function showCover(){
+      let coverDiv = document.createElement('div')
+      coverDiv.id = 'cover-div'
+      document.body.style.overflowY = 'hidden';
+      document.body.append(coverDiv)
+    }
+
+    function hideCover(){
+      document.getElementById('cover-div').remove()
+      document.body.style.overflowY = '';
+    }
+
+    function showPrompt(text, callback){
+      showCover()
+
+      let form = document.getElementById('prompt-form')
+      let promptMessage = document.getElementById('prompt-message')
+
+      promptMessage.innerHTML = text 
+      form.text.value = ''
+      form.text.focus()
+
+      function complete(value){
+        hideCover()
+        container.style.display = 'none'
+        document.body.onkeydown = ''
+        callback(value)
+      }
+
+      form.cancel.onclick = ()=>{
+        complete(null)
+      }
+      form.onsubmit = function (){
+        let value = form.text.value
+        if(value == '') return false;
+        complete(value)
+        return false
+      }
+
+      document.body.onkeydown = (e)=>{
+        if(e.key == 'Escape'){
+          complete(null)
+        }
+      }
+
+      let lastElem = form.elements[form.elements.length - 1]
+      let firstElem = form.elements[0]
+
+      lastElem.onkeydown = (e)=>{
+        if(e.key == 'Tab' && !e.shiftKey){
+          firstElem.focus();
+          return false
+        }
+      }
+
+      firstElem.onkeydown = (e) => {
+        if(e.key == 'Tab' && e.shiftKey){
+          lastElem.focus();
+          return false;
+        }
+      }
+
+      container.style.display = 'block'
+    }
+  </script>
+</body>
+
+</html>
