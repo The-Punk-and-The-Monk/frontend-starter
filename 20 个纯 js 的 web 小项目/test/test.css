@@ -12,17 +12,12 @@
 }
 
 .div1 {
-  /* position: relative; */
-  /* z-index: 99; */
-  margin:100px;
+  float: left;
   background-color: red;
 }
 
-.div2 {
-  position: absolute;
-  z-index: 1;
-  top:0;
-  left:0;
+div.div2 {
+  width: 200px;
   background-color: blue;
 }
 
