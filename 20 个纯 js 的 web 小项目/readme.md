@@ -8,3 +8,5 @@ my 文件夹下为看着 live demo 自己动手写的
 origin 文件夹为 vanillwebprojects 的源码
 
 readme 为自己实现跟源码实现的不同之处以及遇到的一些问题的记录
+
+.
