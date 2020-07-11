@@ -26,3 +26,8 @@ export const getMoreList = (articlePage) => {
     }).catch()
   }
 }
+
+export const toggleShowTop = (bool) => ({
+  type: constants.TOGGLE_SHOW_TOP,
+  showTop: bool
+})

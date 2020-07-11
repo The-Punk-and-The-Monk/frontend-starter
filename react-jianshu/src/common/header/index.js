@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group'
 import { actionCreators } from './store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 import {
   HeaderWrapper,
   Logo,
@@ -18,7 +20,7 @@ import {
   Button,
 } from './style';
 
-class Header extends Component {
+class Header extends PureComponent {
 
   getListArea = () => {
     const { focused, list, page, mouseIn, handleMouseEnter, handleMouseLeave, handleChangePage } = this.props;
@@ -45,14 +47,20 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, list, handleInputFocus, handleInputBlur } = this.props
+    const { focused, list, handleInputFocus, handleInputBlur, login, logout } = this.props
     return (
       <HeaderWrapper>
-        <Logo />
+        <Link to='/'>
+          <Logo />
+        </Link>
         <Nav>
           <NavItem className='left active'>首页</NavItem>
           <NavItem className='left'>下载App</NavItem>
-          <NavItem className='right'>登录</NavItem>
+          {
+            login ? 
+            <NavItem className='right' onClick={logout} style={{"cursor": "pointer"}}>退出</NavItem> :
+              <Link to='/login'><NavItem className='right'  style={{"cursor": "pointer"}}>登录</NavItem></Link>
+          }
           <NavItem className='right'>
             <span className="iconfont">&#xe636;</span>
           </NavItem>
@@ -75,10 +83,12 @@ class Header extends Component {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className='writting'>
-            <span className="iconfont">&#xe708;</span>
-            写文章
-          </Button>
+          <Link to='/write'>
+            <Button className='writting'>
+              <span className="iconfont">&#xe708;</span>
+              写文章
+            </Button>
+          </Link>
           <Button className='reg'>注册</Button>
         </Addition>
       </HeaderWrapper>
@@ -92,7 +102,8 @@ const mapStateToProps = (state) => {
     mouseIn: state.get('header').get('mouseIn'),
     list: state.get('header').get('list'),
     page: state.get('header').get('page'),
-    totalPage: state.get('header').get('totalPage')
+    totalPage: state.get('header').get('totalPage'),
+    login: state.getIn(['login', 'login'])
   }
 }
 
@@ -117,6 +128,9 @@ const mapDispatchToProps = (dispatch) => {
 
     handleChangePage() {
       dispatch(actionCreators.changePage())
+    },
+    logout() {
+      dispatch(loginActionCreators.logout())
     }
   }
 }

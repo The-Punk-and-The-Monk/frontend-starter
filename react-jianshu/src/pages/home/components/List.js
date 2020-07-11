@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store'
+// import { Link } from 'react-router-dom'
 import {
   ListItem,
   ListInfo,
-  LoadMore
+  LoadMore,
+  StyledLink
 } from '../style'
 
-class List extends Component {
+class List extends PureComponent {
   render() {
     const { articleList, getMoreList, articlePage } = this.props
     return ( 
@@ -15,17 +17,21 @@ class List extends Component {
         {
           articleList.map((item, index) => {
             return (
-              <ListItem key={item.get('title') + item.get('id') + index}>
-                <img 
-                  className='list-pic'
-                  src={item.get('imgUrl')}
-                  alt=''
-                />
-                <ListInfo>
-                  <h3 className='title'>{item.get('title')}</h3>
-                  <p className='desc'>{item.get('desc')}</p>
-                </ListInfo>
-              </ListItem>
+                <ListItem key={item.get('title') + item.get('id') + index}>
+                  <StyledLink to={'/detail/' + item.get('id')}>
+                    <img 
+                      className='list-pic'
+                      src={item.get('imgUrl')}
+                      alt=''
+                    />
+                  </StyledLink>
+                  <ListInfo>
+                    <StyledLink to={'/detail/' + item.get('id')}>
+                      <h3 className='title'>{item.get('title')}</h3>
+                    </StyledLink>
+                    <p className='desc'>{item.get('desc')}</p>
+                  </ListInfo>
+                </ListItem> 
             )
           })
         }

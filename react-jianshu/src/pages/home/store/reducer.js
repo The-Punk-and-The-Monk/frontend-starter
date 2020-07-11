@@ -6,6 +6,7 @@ const defaultState = fromJS({
   articleList: [],
   recommendList: [],
   articlePage: 1,
+  showScrollTop: false
 })
 
 export default (state = defaultState, action) => {
@@ -17,6 +18,7 @@ export default (state = defaultState, action) => {
         recommendList: fromJS(action.recommendList)
       })
     }
+
     case constants.ADD_HOME_LIST:{
       let list = state.get('articleList').concat(action.list)
       const articlePage = state.get('articlePage')
@@ -27,6 +29,11 @@ export default (state = defaultState, action) => {
         articlePage: articlePage + 1
       })
     }
+
+    case constants.TOGGLE_SHOW_TOP:{
+      return state.set("showScrollTop", action.showTop)
+    }
+
     default:
       return state;
   }

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const HomeWrapper = styled.div`
   overflow: hidden;
@@ -101,3 +102,18 @@ export const RecommendItem = styled.div`
   background-size: contain;
 `
 
+export const BackTop = styled.div`
+  position: fixed;
+  right: 100px;
+  bottom: 100px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px solid #ccc;
+  font-size: 14px;
+`
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`
