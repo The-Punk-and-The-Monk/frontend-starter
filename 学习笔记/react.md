@@ -19,4 +19,12 @@
 ## 用到的包
 react, redux, react-redux, redux-thunk, immutable, redux-immutable, axios, styled-components,react-transition-group
 
-##
+## immutable 
+1. https://immutable-js.github.io/immutable-js/
+2. Immutable 详解及 React 中实践: https://github.com/camsong/blog/issues/3
+3. 一些更新值的函数: mergeDeep, getIn, setIn, updateIn
+
+
+## 杂
+1. css reset, normalize.css 用来消除不同浏览器之中 css 默认样式的差异
+2. html 的顺序对样式的呈现也有影响.
