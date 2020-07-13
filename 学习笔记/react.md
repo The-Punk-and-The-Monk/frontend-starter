@@ -17,7 +17,16 @@
 1. 统一不同浏览器的元素渲染的 css 样式的默认值
 
 ## 用到的包
-react, redux, react-redux, redux-thunk, immutable, redux-immutable, axios, styled-components,react-transition-group
+react, 
+redux, 管理 state, 方便组件之间传值
+react-redux, 更方便的使用 redux
+redux-thunk,  中间件, 异步 action, 
+immutable, 不可变数据, 结合 PureComponent, 使 react 性能更高, 减少不必要的更新
+redux-immutable, 用来结合多个 reducer
+axios, 
+styled-components,
+react-transition-group, 动画
+react-loadable, 根据需要加载页面,而不是一次性加载
 
 ## immutable 
 1. https://immutable-js.github.io/immutable-js/
