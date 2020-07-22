@@ -50,6 +50,24 @@ class Product {
     })
   }
 
+  //新增品类
+  saveCategory(category){
+    return _mm.request({
+      type  : 'post',
+      url   : '/manage/category/add_category.do',
+      data  : category
+    })
+  }
+
+  // 修改品类名称
+  updateCategoryName(category){
+    return _mm.request({
+      type  : 'post',
+      url   : '/manage/category/set_category_name.do',
+      data  : category
+    })
+  }
+
   // 检查保存商品的表单数据
   checkProduct(product) {
     const result = {
@@ -92,6 +110,7 @@ class Product {
 
   /**
    * 品类相关
+   * 根据父品类id, 获取子品类列表
    */
   getCategoryList(getCategoryList) {
     return _mm.request({
