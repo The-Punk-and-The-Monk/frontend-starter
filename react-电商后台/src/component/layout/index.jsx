@@ -1,19 +1,21 @@
-import React from 'react'
-import './theme.css'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './theme.css';
+import './index.scss';
 
-import NavTop from '../nav-top/index.jsx'
-import NavSide from 'component/nav-side/index.jsx'
+import NavSide from 'component/nav-side/index.jsx';
+import NavTop from 'component/nav-top/index.jsx';
 
-class Layout extends React.Component {
-  render(){
-    return (
-      <div id="wrapper">
-        <NavTop></NavTop>
-        <NavSide></NavSide>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+const Layout = ({ children }) => (
+  <div id="wrapper">
+    <NavTop />
+    <NavSide />
+    {children}
+  </div>
+);
 
-export default Layout
+Layout.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default Layout;

@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack')
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -8,45 +8,45 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
-    filename: 'js/app.js'
+    filename: 'js/app.js',
   },
   devServer: {
     port: 9130,
     historyApiFallback: {
-      index: '/dist/index.html'
+      index: '/dist/index.html',
     },
     proxy: {
-      '/manage' : {
+      '/manage': {
         target: 'http://admintest.happymmall.com',
-        changeOrigin: true
+        changeOrigin: true,
       },
-      '/user/logout.do' : {
+      '/user/logout.do': {
         target: 'http://admintest.happymmall.com',
-        changeOrigin: true
-      }
-    }
+        changeOrigin: true,
+      },
+    },
   },
   resolve: {
-    alias:{
+    alias: {
       page: path.resolve(__dirname, 'src/page'),
       component: path.resolve(__dirname, 'src/component'),
       util: path.resolve(__dirname, 'src/util'),
-      service: path.resolve(__dirname, 'src/service')
-    }
+      service: path.resolve(__dirname, 'src/service'),
+    },
   },
   plugins: [
     // 处理html文件
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      favicon: './favicon.ico'
+      favicon: './favicon.ico',
     }),
     // 独立css文件
     new ExtractTextPlugin('css/index.css'),
     // 提出公共模块
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      filename: 'js/base.js'
-    })
+      filename: 'js/base.js',
+    }),
   ],
   module: {
     rules: [
@@ -57,48 +57,48 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react']
-          }
-        }
+            presets: ['env', 'es2015', 'react', 'stage-0'],
+          },
+        },
       },
       // css文件的处理
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader'
-        })
+          use: 'css-loader',
+        }),
       },
       // sass文件的处理
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       // 图片的配置
       {
         test: /\.(png|jpg|gif)$/,
-        use:[
+        use: [
           {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: 'resource/[name].[ext]'
-            }
-          }
-        ]
+              name: 'resource/[name].[ext]',
+            },
+          },
+        ],
       },
       // 字体图标的配置
       {
         test: /\.(eot|svg|ttf|woff|woff2|otf)$/,
-        use:[
+        use: [
           {
             loader: 'file-loader',
-          }
-        ]
-      }
-    ]
-  }
-}
+          },
+        ],
+      },
+    ],
+  },
+};

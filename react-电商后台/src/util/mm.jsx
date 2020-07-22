@@ -20,7 +20,6 @@ class MUtil {
         }
       })
     })
-    
   };
 
   // 跳转登录
@@ -35,6 +34,10 @@ class MUtil {
     const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
     const regResult = queryString.match(reg);
     return regResult ? decodeURIComponent(regResult[2]) : null;
+  }
+
+  successTips(successMsg){
+    alert(successMsg || '操作成功')
   }
 
   errorTips(errMsg){
