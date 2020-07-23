@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/app.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.linfeng.space/admin-ve-fe/dist/',
+    publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.linfeng.space/admin-v2-fe/dist/',
     filename: 'js/app.js',
   },
   devServer: {
