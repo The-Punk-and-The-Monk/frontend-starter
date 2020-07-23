@@ -1,4 +1,4 @@
-import React            from 'react'
+import React  from 'react'
 import ReactDOM         from 'react-dom'
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
@@ -10,7 +10,6 @@ import OrderList         from 'page/order/index.jsx';
 import OrderDetail        from 'page/order/detail.jsx'; 
 import ProductRouter    from 'page/product/router.jsx'
 import ErrorPage        from 'page/error/index.jsx'; 
-
 
 class App extends React.Component {
   render() {

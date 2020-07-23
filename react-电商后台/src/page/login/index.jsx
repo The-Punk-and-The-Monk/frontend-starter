@@ -68,7 +68,7 @@ class Login extends React.Component {
                   type="text"
                   name="username"
                   className="form-control"
-                  placeholder="用户名"
+                  placeholder="admin"
                   onKeyUp={e => this.onInputKeyUp(e)}
                   onChange={e => this.onInputChange(e)}
                 />
@@ -79,7 +79,7 @@ class Login extends React.Component {
                   type="password"
                   name="password"
                   className="form-control"
-                  placeholder="密码"
+                  placeholder="admin"
                   onKeyUp={e => this.onInputKeyUp(e)}
                   onChange={e => this.onInputChange(e)}
                 />

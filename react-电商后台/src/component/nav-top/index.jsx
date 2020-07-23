@@ -35,7 +35,7 @@ class NavTop extends React.Component {
 
         <ul className="nav navbar-top-links navbar-right">
           <li className="dropdown">
-            <a className="dropdown-toggle" href="javascript:;">
+            <a className="dropdown-toggle" href={this.state.username ? "javascript:;" : '/login'}>
               <i className="fa fa-user fa-fw" />
               {
                 this.state.username
