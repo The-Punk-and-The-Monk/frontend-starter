@@ -36,4 +36,3 @@ react-loadable, 根据需要加载页面,而不是一次性加载
 
 ## 杂
 1. css reset, normalize.css 用来消除不同浏览器之中 css 默认样式的差异
-2. html 的顺序对样式的呈现也有影响.
