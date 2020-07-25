@@ -2,7 +2,7 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:36:42
- * @LastEditTime: 2020-07-24 19:34:39
+ * @LastEditTime: 2020-07-25 09:57:47
  * @FilePath: /webpack-react-scaffolding/build/webpack.common.js
  * @Description: 
  */ 
@@ -22,6 +22,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(srcPath, 'index.html'),
       filename: 'index.html',
+      favicon: "./favicon.ico",
       chunks: ['index', 'vendor', 'common']
     }),
     // new HtmlWebpackPlugin({
