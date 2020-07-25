@@ -18,9 +18,9 @@
 
   ~~~javascript
   const webpackCommonConf = require('./webpack.common.js')
-  const { smart } = require('webpack-merge')
+  const { merge } = require('webpack-merge')
   
-  module.exports = smart(webpackCommonConf, {
+  module.exports = merge(webpackCommonConf, {
 
     ...
 
@@ -68,7 +68,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 // 增加 'less-loader' ，注意顺序
-                loader: ['style-loader', 'css-loader', 'less-loader']
+                loader: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
             }
         ]
     },
@@ -88,10 +88,10 @@ module.exports = {
 const path = require('path')
 const webpack = require('webpack')
 const webpackCommonConf = require('./webpack.common.js')
-const { smart } = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
 
-module.exports = smart(webpackCommonConf, {
+module.exports = merge(webpackCommonConf, {
 
     mode: 'development',
     module: {
@@ -141,10 +141,10 @@ const path = require('path')
 const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpackCommonConf = require('./webpack.common.js')
-const { smart } = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const { srcPath, distPath } = require('./paths')
 
-module.exports = smart(webpackCommonConf, {
+module.exports = merge(webpackCommonConf, {
 
     mode: 'production',
     output: {
@@ -184,38 +184,49 @@ module.exports = smart(webpackCommonConf, {
 ~~~
 
 5. package.json: 
-```javascript
+```json
 {
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "devBuild": "webpack --config build-optimization/webpack.dev.js",
-    "dev": "webpack-dev-server --config build-optimization/webpack.dev.js",
-    "build": "webpack --config build-optimization/webpack.prod.js"
+    "dev": "node_modules/.bin/webpack-dev-server --config build/webpack.dev.js",
+    "build": "node_modules/.bin/webpack --config build/webpack.prod.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "autoprefixer": "^9.7.3",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/runtime": "^7.10.5",
+    "@babel/runtime-corejs3": "^7.10.5",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.2.1",
-    "file-loader": "^5.0.2",
-    "happypack": "^5.0.1",
-    "html-webpack-plugin": "^3.2.0",
-    "less": "^3.10.3",
-    "less-loader": "^5.0.0",
-    "mini-css-extract-plugin": "^0.8.0",
+    "core-js": "^3.6.5",
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
-    "style-loader": "^1.0.1",
-    "terser-webpack-plugin": "^2.2.2",
-    "url-loader": "^3.0.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "webpack-merge": "^4.2.2",
-    "webpack-parallel-uglify-plugin": "^1.1.2"
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.7",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.0.9"
   },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.1.1"
+  }
 }
 ```
 
@@ -457,11 +468,6 @@ module: {
   }, 
 ~~~
 
-## module, bundle, chunk的区别
-
-module - 各个源码文件, webpack中一切皆模块, js, css, 图片等, 能被引用的都是模块
-chunk - 多个模块合并成的, 根据定义的chunk(可以定义chunk的地方: entry, splitChunk, import()), 分析它引用的模块, 把引用的模块和原来的模块合并成chunk
-bundle - 最终的输出文件
 
 ## webpack 性能优化
 
@@ -473,7 +479,6 @@ bundle - 最终的输出文件
 
   ~~~javascript
   {
-
     test: /\.js$/,
     use:{
       loader: 'babel-loader?cacheDirectory',  // 开启缓存
@@ -484,14 +489,15 @@ bundle - 最终的输出文件
     include: path.resolve(__dirname, 'src'), // 明确范围
     // 排除范围
     exclude: path.resolve(__dirname, 'node_modules')
-
   }
   ~~~
   
 
 2. IgnorePlugin (可用于生产环境)
 
+
 3. noParse  (可用于生成环境)
+webpack noParse作用主要是过滤不需要解析的文件，比如打包的时候依赖了三方库（jquyer、lodash）等，而这些三方库里面没有其他依赖，可以通过配置noParse不去解析文件，提高打包效率
 
 4. happyPack 多进程打包  (可用于生产环境)
 * js单线程, 开启多进程打包
@@ -541,7 +547,6 @@ webpack.prod.js:
 
 {
   plugins: [
-
     // 使用 ParallelUglifyPlugin 并行压缩输出的 JS 代码
     new ParallelUglifyPlugin({
         // 传递给 UglifyJS 的参数
@@ -704,10 +709,54 @@ module.exports = {
 ~~~
 
 
-~~~javascript
+## 前端为何要进行打包和构建?
+方面一: 代码方面
+1. 体积更小(tree-shaking, 压缩, 合并), 加载更快
+2. 编译高级语言或语法(ts, es6+, 模块化, scss)
+3. 兼容性和错误检查(polyfill, postcss, eslint)
 
-~~~
+方面二: 研发环境方面
+1. 统一, 高效的开发环境
+2. 统一的构建流程和产出标准
+3. 集成公司构建规范(提测, 上线等)
+4. 
 
-webpack.common.js: 
-~~~javascript
-~~~
+
+## module, bundle, chunk的区别
+
+module - 各个源码文件, webpack中一切皆模块, js, css, 图片等, 能被引用的都是模块
+chunk - 多个模块合并成的, 根据定义的chunk(可以定义chunk的地方: entry, splitChunk, import()), 分析它引用的模块, 把引用的模块和原来的模块合并成chunk
+bundle - 最终的输出文件
+
+
+## loader 和 plugin 的区别
+1. loader 模块转换器, 如less -> css
+2. plugin 扩展插件, 如HtmlWebpackPlugin
+3. 常见loader和plugin
+
+
+## babel 和 webpack 的区别
+* babel - js新语法的编译工具, 不关心模块化
+* webpack - 打包构建工具, 是多个loader, plugin的集合
+
+
+## 如何产出一个lib
+参考 上面的 DllPlugin动态链接库插件
+
+## babel-ployfill 和 babel-runtime 的区别
+* babel-polyfill 会污染全局
+* babel-runtime 不会污染全局
+* 产出第三方lib要用babel-runtime
+
+
+## webpack 如何实现懒加载(异步加载)
+* import()
+* 结合vue, react异步组件
+* 结合vue-router, react-router异步加载路由
+
+
+## 为何proxy 不能被polyfill
+* 如class可以用function模拟
+* 如promise可以用callback来模拟
+* 但proxy的功能用object.defineProperty无法模拟
+
