@@ -2,17 +2,27 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 19:18:11
- * @LastEditTime: 2020-07-25 08:59:29
- * @FilePath: /webpack-react-scaffolding/src/App.jsx
+ * @LastEditTime: 2020-07-25 11:59:18
+ * @FilePath: /frontend-starter/webpack-react-scaffolding/src/App.jsx
  * @Description: entry
  */ 
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import store from './store'
 
-class App extends React.Component{
-  render(){
+class App extends React.Component {
+
+  render() {
     return (
-      <div>the punk and the monk</div>
+      <Fragment>
+        <Provider store={store}>
+          <Router>
+            <div>aaa</div>
+          </Router>
+        </Provider>
+      </Fragment>
     )
   }
 }

@@ -2,8 +2,8 @@
  * @Author: LinFeng
  * @LastEditors: LinFeng
  * @Date: 2020-07-24 18:36:42
- * @LastEditTime: 2020-07-25 09:57:47
- * @FilePath: /webpack-react-scaffolding/build/webpack.common.js
+ * @LastEditTime: 2020-07-25 11:58:30
+ * @FilePath: /frontend-starter/webpack-react-scaffolding/build/webpack.common.js
  * @Description: 
  */ 
 const path = require('path');
@@ -17,6 +17,9 @@ module.exports = {
   },
   module: {
     rules:[]
+  },
+  resolve: {
+    extensions: ['.jsx', '.js']
   },
   plugins: [
     new HtmlWebpackPlugin({
